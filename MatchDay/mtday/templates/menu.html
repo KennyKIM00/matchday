@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Day</title>
+
+    <!-- Bootstrap CSS 연결 (버전 5.3.0) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'CSS/menu.css' %}">
+
+</head>
+<body style="background-color: #fafafa;">
+    <header>
+        <nav class="navbar navbar-dark fixed-top">
+            <div class="container-fluid">
+                <div class="row w-100 align-items-center">
+                    <!-- 왼쪽: 네비게이션 토글 버튼 -->
+                    <div class="col d-flex align-items-center">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="toggleNavbar()">
+                            <span class="navbar-toggler-icon">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </button>
+                    </div>
+
+                    <!-- 가운데: 로고 -->
+                    <div class="col d-flex justify-content-center">
+                        <a class="navbar-brand" href="{% url 'home' %}">
+                            <img src="{% static 'img/matchday_logo.png' %}" alt="Logo">
+                        </a>
+                    </div>
+
+
+                    
+                    
+
+                    <!-- 오른쪽: 검색창, 검색 버튼, 사용자 아이콘 -->
+<div class="col d-flex justify-content-end align-items-center">
+    <!-- 검색창과 검색 버튼 -->
+    <div class="d-flex align-items-center me-3">
+        <input class="form-control search-input" type="search" placeholder="Search" style="max-width: 200px; margin-right: 10px;">
+        <button class="btn btn-outline-light" type="submit" style="max-width: 30px; padding-top: 0;">
+            <i class="bi bi-search" style="font-size: 1.5rem;"></i>
+        </button>
+    </div>
+
+                <!-- 로그인 상태 확인 -->
+                        {% if request.session.user_id %}
+                            <!-- 로그인 상태 -->
+                            <a class="navbar-brand" href="{% url 'my_info' %}" style="margin-left: 10px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                </svg>
+                            </a>
+                            <!-- 로그인 상태일 때 로그아웃 버튼 -->
+                        {% if request.session.user_id %}
+                        <a href="{% url 'logout' %}" class="btn btn-danger" style="margin-left: 10px;">
+                            로그아웃
+                        </a>
+                        {% endif %}
+                            
+                        {% else %}
+                            <!-- 로그아웃 상태 -->
+                            <a class="navbar-brand" href="{% url 'login' %}" style="margin-left: 10px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                </svg>
+                            </a>
+                        {% endif %}
+                    </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse" id="navbarCollapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link">구기 및 팀 스포츠</a>
+                        <ul class="ms-3"> <!-- 여기에 서브 리스트 추가 -->
+                            <li style="font-size: 15px;">축구</li>
+                            <li style="font-size: 15px;">풋살</li>
+                            <li style="font-size: 15px;">농구</li>
+                            <li style="font-size: 15px;">배구</li>
+                            <li style="font-size: 15px;">핸드볼</li>
+                            <li style="font-size: 15px;">야구 소프트볼</li>
+                            <li style="font-size: 15px;">야구</li>
+                            <li style="font-size: 15px;">럭비</li>
+                            <li style="font-size: 15px;">하키</li>
+                            <li style="font-size: 15px;">세팍타크로</li>
+                            <li style="font-size: 15px;">족구</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">개인 경기 스포츠</a>
+                        <ul class="ms-3"> <!-- 여기에 서브 리스트 추가 -->
+                            <li style="font-size: 15px;">테니스</li>
+                            <li style="font-size: 15px;">배드민턴</li>
+                            <li style="font-size: 15px;">탁구</li>
+                            <li style="font-size: 15px;">스쿼시</li>
+                            <li style="font-size: 15px;">소프트테니스</li>
+                            <li style="font-size: 15px;">볼링</li>
+                            <li style="font-size: 15px;">골프</li>
+                            <li style="font-size: 15px;">펜싱</li>
+                            <li style="font-size: 15px;">역도</li>
+                            <li style="font-size: 15px;">당구</li>
+                            <li style="font-size: 15px;">궁도</li>
+                            <li style="font-size: 15px;">체스</li>
+                            <li style="font-size: 15px;">바둑</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">수상 및 레저 스포츠</a>
+                        <ul class="ms-3"> <!-- 여기에 서브 리스트 추가 -->
+                            <li style="font-size: 15px;">수영</li>
+                            <li style="font-size: 15px;">요트</li>
+                            <li style="font-size: 15px;">카누</li>
+                            <li style="font-size: 15px;">조정</li>
+                            <li style="font-size: 15px;">수상스키</li>
+                            <li style="font-size: 15px;">웨이크 보드</li>
+                            <li style="font-size: 15px;">웨이크 스포츠</li>
+                            <li style="font-size: 15px;">페러 글라이딩</li>
+                            <li style="font-size: 15px;">자전거</li>
+                            <li style="font-size: 15px;">산악</li>
+                            <li style="font-size: 15px;">파크골프</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">무술 및 격투기</a>
+                        <ul class="ms-3"> <!-- 여기에 서브 리스트 추가 -->
+                            <li style="font-size: 15px;">태권도</li>
+                            <li style="font-size: 15px;">합기도</li>
+                            <li style="font-size: 15px;">유도</li>
+                            <li style="font-size: 15px;">복싱</li>
+                            <li style="font-size: 15px;">킥복싱</li>
+                            <li style="font-size: 15px;">주짓수</li>
+                            <li style="font-size: 15px;">씨름</li>
+                            <li style="font-size: 15px;">검도</li>
+                            <li style="font-size: 15px;">우슈</li>
+                            <li style="font-size: 15px;">가라데</li>
+                            <li style="font-size: 15px;">택견</li>
+                            <li style="font-size: 15px;">레슬링</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">체력 및 피트니스</a>
+                        <ul class="ms-3"> <!-- 여기에 서브 리스트 추가 -->
+                            <li style="font-size: 15px;">보디빌딩</li>
+                            <li style="font-size: 15px;">에어로 빅힙합</li>
+                            <li style="font-size: 15px;">근대 5종</li>
+                            <li style="font-size: 15px;">철인 3종</li>
+                            <li style="font-size: 15px;">체조</li>
+                            <li style="font-size: 15px;">줄넘기</li>
+                            <li style="font-size: 15px;">댄스 스포츠</li>
+                            <li style="font-size: 15px;">치어리딩</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">동계 스포츠</a>
+                        <ul class="ms-3"> <!-- 여기에 서브 리스트 추가 -->
+                            <li style="font-size: 15px;">스키</li>
+                            <li style="font-size: 15px;">스노보드</li>
+                            <li style="font-size: 15px;">빙상</li>
+                            <li style="font-size: 15px;">컬링</li>
+                            <li style="font-size: 15px;">아이스하키</li>
+                            <li style="font-size: 15px;">루지</li>
+                        
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // 네비게이션 바가 펼쳐질 때 투명도 적용
+        function toggleNavbar() {
+            var navbar = document.querySelector('.navbar');
+            var navbarCollapse = document.querySelector('.navbar-collapse');
+
+            navbar.classList.toggle('transparent'); // 네비게이션 바 투명화
+
+            if (navbarCollapse.classList.contains('show')) {
+                navbar.classList.remove('transparent'); // 메뉴가 펼쳐지지 않으면 투명도 제거
+            }
+        }
+
+        // 검색 토글 함수
+        function toggleSearch() {
+            var searchContainer = document.getElementById('searchContainer');
+            searchContainer.classList.toggle('show-search');
+        }
+    </script>
+</body>
+</html>

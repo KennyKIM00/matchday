@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/button.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/style.css' %}" />
+    <script src="{% static 'JS/region.js' %}"></script>
+</head>
+<body>
+    {% include 'menu.html' %}
+<div id="find">
+    {% comment %} <h1>지역별 동호회 찾기</h1>
+    <!-- 검색 폼 -->
+    <form method="GET" action="">
+        <label for="ctprvn_nm">시도명: </label>
+        <select id="ctprvn_nm" name="ctprvn_nm">
+            <option value="">시도</option>
+            <option value="서울특별시">서울특별시</option>
+            <option value="부산광역시">부산광역시</option>
+            <option value="대구광역시">대구광역시</option>
+            <option value="인천광역시">인천광역시</option>
+            <option value="광주광역시">광주광역시</option>
+            <option value="대전광역시">대전광역시</option>
+            <option value="울산광역시">울산광역시</option>
+            <option value="세종특별자치시">세종특별자치시</option>
+            <option value="경기도">경기도</option>
+            <option value="강원특별자치도">강원특별자치도</option>
+            <option value="충청북도">충청북도</option>
+            <option value="충청남도">충청남도</option>
+            <option value="전라북도">전라북도</option>
+            <option value="전라남도">전라남도</option>
+            <option value="경상북도">경상북도</option>
+            <option value="경상남도">경상남도</option>
+            <option value="제주특별자치도">제주특별자치도</option>
+        </select>
+
+        <label for="signgu_nm">시군구명: </label>
+        <select id="signgu_nm" name="signgu_nm">
+            <option value="">시군구</option>
+        </select>
+
+        <button type="submit">검색하기</button>
+    </form> {% endcomment %}
+
+    <!-- 종목 버튼 -->
+    <h2>종목별 보기</h2>
+    <div id="sports-buttons">
+        <button onclick="filterBySport('')">전체</button>
+        {% for sport in sports %}
+            <button onclick="filterBySport('{{ sport }}')">{{ sport }}</button>
+        {% endfor %}
+    </div>
+
+    <!-- 테이블로 결과 출력 -->
+    <h2>검색 결과 출력</h2>
+    {% if clubs %}
+        <table id="club-table">
+            <thead>
+                <tr>
+                    <th>동호회명</th>
+                    <th>시도명</th>
+                    <th>시군구명</th>
+                    <th>종목명</th>
+                    <th>소속그룹명</th>
+                    <th>종목분류명</th>
+                    <th>성별구분명</th>
+                    <th>회원수</th>
+                    <th>설립일자</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for club in clubs %}
+                <tr class="club-row" data-sport="{{ club.item_nm }}">
+                    <td>{{ club.club_nm }}</td>
+                    <td>{{ club.ctprvn_nm }}</td>
+                    <td>{{ club.signgu_nm }}</td>
+                    <td>{{ club.item_nm }}</td>
+                    <td>{{ club.afltion_group_nm }}</td>
+                    <td>{{ club.item_cl_nm }}</td>
+                    <td>{{ club.sexdstn_flag_nm }}</td>
+                    <td>{{ club.mber_co|floatformat:0 }}명</td>
+                    <td>{{ club.fond_de }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="text-align:center;">No results found</p>
+    {% endif %}
+    </div>
+</body>
+</html>

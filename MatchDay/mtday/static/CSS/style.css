@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+/* 기본 설정 */
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* body 설정 - 모든 페이지에서 사용됨 (home.html, menu.html, sign_up.html) */
+body {
+    background: linear-gradient(45deg, #d5d2d2, #d5d2d2);
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+}
+
+#find {
+    display: flex;
+    flex-direction: column; /* 자식 요소를 세로로 정렬 */
+    align-items: center;    /* 자식 요소를 수평 가운데 정렬 */
+    gap: 10px;              /* 요소 간 간격 */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* main 컨테이너 설정 - sign_up.html에서 사용됨 */
+main.container {
+    background: white;
+    min-width: 380px;
+    min-height: 30vh;
+    padding: 2rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+/* main 로그인 컨테이너 설정 - home.html에서 사용됨 */
+main.login-container {
+    background: white;
+    min-width: 380px;
+    min-height: 30vh;
+    padding: 2rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+/* 페이지 제목 스타일 설정 - sign_up.html, home.html에서 사용됨 */
+main h2 {
+    font-weight: 600;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+/* 페이지 제목 아래 선 - sign_up.html, home.html에서 사용됨 */
+main h2::before {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 25px;
+    bottom: 3px;
+    left: 0;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #0f0f10, #98959d);
+}
+
+/* 폼 설정 - sign_up.html, home.html에서 사용됨 */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 입력 필드 설정 - sign_up.html, home.html에서 사용됨 */
+.input-field {
+    position: relative;
+}
+
+/* 첫 번째 입력 필드 마진 설정 - sign_up.html, home.html에서 사용됨 */
+form .input-field:first-child {
+    margin-bottom: 1.5rem;
+}
+
+/* 입력 필드 하단 선 설정 - sign_up.html, home.html에서 사용됨 */
+.input-field .underline::before {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    bottom: -5px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* 포커스된 입력 필드 하단 선 애니메이션 - sign_up.html, home.html에서 사용됨 */
+.input-field .underline::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(45deg, #131314, #e0dee3);
+    transform: scaleX(0);
+    transition: all .3s ease-in-out;
+    transform-origin: left;
+}
+
+/* 입력 필드 포커스 시 하단 선 애니메이션 - sign_up.html, home.html에서 사용됨 */
+.input-field input:focus ~ .underline::after {
+    transform: scaleX(1);
+}
+
+/* 입력 필드 스타일 - sign_up.html, home.html에서 사용됨 */
+.input-field input {
+    outline: none;
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+}
+
+/* 입력 필드 placeholder 스타일 - sign_up.html, home.html에서 사용됨 */
+.input-field input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* 제출 버튼 스타일 - sign_up.html, home.html에서 사용됨 */
+form input[type="submit"] {
+    margin-top: 2rem;
+    padding: 0.4rem;
+    width: 100%;
+    background: linear-gradient(to left, #0f0f0f, #929193);
+    cursor: pointer;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 300;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* 제출 버튼 hover 효과 - sign_up.html, home.html에서 사용됨 */
+form input[type="submit"]:hover {
+    letter-spacing: 0.5px;
+    background: linear-gradient(to right, #929193, #0f0f0f);
+}
+
+/* 푸터 스타일 설정 - 사용되지 않음 */
+.footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+/* 푸터 텍스트 스타일 설정 - 사용되지 않음 */
+.footer span {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* 소셜 필드 스타일 - 사용되지 않음 */
+.footer .social-field {
+    padding: 0.4rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+/* 소셜 필드 아이콘 스타일 - 사용되지 않음 */
+.footer .social-field a i {
+    margin: 0 0.5rem;
+    width: 15px;
+}
+
+/* 소셜 필드 링크 스타일 - 사용되지 않음 */
+.footer .social-field a {
+    text-decoration: none;
+    color: white;
+}
+
+/* 트위터 소셜 필드 스타일 - 사용되지 않음 */
+.footer .social-field.twitter {
+    background: linear-gradient(to right, #56a7f2, #468aca);
+}
+
+/* 페이스북 소셜 필드 스타일 - 사용되지 않음 */
+.footer .social-field.facebook {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+}
+
+/* 링크 스타일 - home.html에서 사용됨 */
+.links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+    margin-top: 20px;
+}
+
+/* 링크 텍스트 스타일 - home.html에서 사용됨 */
+.links a {
+    text-decoration: none;
+}
+
+/* 회원가입 링크 스타일 - home.html에서 사용됨 */
+.signup-link {
+    margin-left: auto;
+}
+
+/* 비밀번호 재설정 링크 스타일 - home.html에서 사용됨 */
+.password-reset-link {
+    margin-right: auto;
+}
+
+/* 테이블 스타일 - sign_up.html에서 사용됨 */
+table {
+    width: 280px;
+    height: 550px;
+    margin: auto;
+}
+
+/* 이메일 입력 필드 스타일 - sign_up.html에서 사용됨 */
+.email {
+    width: 127px;
+    height: 32px;
+    font-size: 15px;
+    border: 0;
+    border-color: lightgray;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233,233,233);
+}
+
+/* 일반 텍스트 입력 필드 스타일 - sign_up.html에서 사용됨 */
+.text {
+    width: 250px;
+    height: 32px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233,233,233);
+}
+
+/* 선택 필드 스타일 - sign_up.html에서 사용됨 */
+select {
+    width: 100px;
+    height: 32px;
+    font-size: 15px;
+    border: 1;
+    border-color: lightgray;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+}
+
+/* 버튼 스타일 - sign_up.html에서 사용됨 */
+.btn {
+    width: 262px;
+    height: 32px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(164, 199, 255);
+}
+
+/* 버튼 active 상태 스타일 - sign_up.html에서 사용됨 */
+.btn:active {
+    width: 262px;
+    height: 32px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(61, 135, 255);
+}
+
+/* 하단 네비게이션 스타일 - 사용되지 않음 */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #d3d3d3; /* Light grey color */
+    height: 50px;
+}
+
+/* 하단 네비게이션 목록 스타일 - 사용되지 않음 */
+.bottom-nav nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+}
+
+/* 회원가입 컨테이너 스타일 - sign_up.html에서 사용됨 */
+#sign_up-container {
+    max-width: 300px;
+    padding: 2rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+

@@ -1,0 +1,107 @@
+.search-input {
+    width: 115%;
+    transition: width 0.3s ease-in-out;
+}
+
+/* 페이지 콘텐츠가 네비게이션 바에 가려지지 않도록 기본 패딩 추가 */
+body {
+    padding-top: 120px;
+    transition: padding-top 0.3s ease-in-out;
+}
+
+.navbar {
+    background-color: white !important;
+    transition: padding-bottom 0.3s ease-in-out; /* padding-bottom을 부드럽게 조정 */
+}
+
+.navbar .navbar-brand, .navbar .navbar-toggler-icon, .navbar .bi-search, .navbar .bi-person-circle {
+    color: black !important;
+}
+
+.nav-link {
+    font-size: 20px;
+    color: black !important;
+}
+
+.navbar .navbar-toggler {
+    border-color: white !important;
+    color: black !important;
+}
+
+.navbar .navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    background-color: transparent !important;
+    width: 30px;
+    height: 22px;
+}
+
+.navbar-toggler-icon span {
+    background-color: black !important;
+    height: 3px;
+    width: 30px;
+    margin: 5px auto;
+    display: block;
+}
+
+.navbar-brand img {
+    max-height: 50px;
+}
+
+.search-container {
+    display: flex !important; /* 검색창을 항상 보이도록 설정 */
+    align-items: center;
+    margin-right: 10px;
+}
+
+.show-search {
+    display: none; /* 더 이상 사용되지 않음 */
+}
+
+.nav-link {
+    margin-left: 30px;
+}
+
+/* 네비게이션 메뉴 가로로 배치 및 중앙 정렬 */
+.navbar-collapse {
+    display: flex;
+    justify-content: center;
+}
+
+/* .navbar-nav을 중앙 정렬 */
+.navbar-nav {
+    text-align: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+/* 각 카테고리 항목 중앙 정렬 및 가로 정렬 맞춤 */
+.navbar-nav .nav-item {
+    display: inline-block;
+    margin: 0 30px; /* 항목 간 간격 설정 */
+    vertical-align: top;
+    margin-top: 30px;
+}
+
+.navbar-nav .nav-item ul {
+    padding-left: 0;
+    text-align: left;
+    /* 글머리 기호와 내용 간격 */
+    margin-top: 30px;
+}
+
+.navbar-nav .nav-item ul li {
+    font-size: 15px;
+    margin: 5px 0; /* 리스트 항목 간 간격 줄이기 */
+    padding-left: 10px; /* 글머리 기호와 텍스트 간의 간격 */
+    list-style-position: inside; /* 글머리 기호 위치를 텍스트 안쪽으로 */
+}
+
+.navbar.transparent {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    transition: background-color 0.3s ease-in-out; /* 투명도 전환 효과 */
+}
